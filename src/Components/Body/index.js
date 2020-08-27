@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Home, About, Dashboard } from "../ExamplePages";
+import { Home, About, Dashboard, Profile } from "../ExamplePages";
 
 const Body = () => (
   <Switch>
@@ -12,6 +12,9 @@ const Body = () => (
     </Route>
     <Route path="/dashboard">
       <Dashboard text="hello there" />
+    </Route>
+    <Route path="/profile">
+      <Profile />
     </Route>
   </Switch>
 );

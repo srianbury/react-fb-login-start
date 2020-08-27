@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import AuthenticationContext from "../Authentication";
 
 const HeaderContainer = () => {
-  const { user } = useContext(AuthenticationContext);
-  return <HeaderView username={user.username} />;
+  const { user, isLoggedIn, logout } = useContext(AuthenticationContext);
+  const name = isLoggedIn ? user.name : null;
+  return <HeaderView name={name} isLoggedIn={isLoggedIn} logout={logout} />;
 };
 
-const HeaderView = ({ username }) => (
+const HeaderView = ({ name, isLoggedIn, logout }) => (
   <>
     <ul>
       <li>
@@ -19,10 +20,24 @@ const HeaderView = ({ username }) => (
       <li>
         <Link to="/dashboard">Dashboard</Link>
       </li>
-      <li>Username: {username}</li>
+      <li>
+        <Link to="/profile">Profile</Link>
+      </li>
+      <Name isLoggedIn={isLoggedIn} name={name} />
+      {isLoggedIn && (
+        <li>
+          <button type="button" onClick={logout}>
+            Logout
+          </button>
+        </li>
+      )}
     </ul>
     <hr />
   </>
+);
+
+const Name = ({ isLoggedIn, name }) => (
+  <li>{isLoggedIn ? `Name: ${name}` : "Not Logged In"}</li>
 );
 
 export default HeaderContainer;
