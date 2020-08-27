@@ -10,7 +10,6 @@ const Login = () => {
         appId={process.env.REACT_APP_FB_LOGIN_APP_ID}
         autoLoad={false}
         fields="name,email"
-        onClick={() => console.log("clicked")}
         callback={login}
       />
     </div>
